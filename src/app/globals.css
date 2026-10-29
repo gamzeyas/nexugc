@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+/*
+ * NexUGC design tokens. Navy + orange stay; the "glowing AI" look goes:
+ * flat surfaces, hairline borders, warm off-white text and a faint paper grain.
+ */
+@theme {
+  --color-ink: #000d1a;
+  --color-surface: #07182b;
+  --color-surface-2: #0c2138;
+  --color-line: rgb(243 238 231 / 0.08);
+  --color-line-strong: rgb(243 238 231 / 0.16);
+  --color-paper: #f3eee7;
+  --color-muted: rgb(243 238 231 / 0.6);
+  --color-faint: rgb(243 238 231 / 0.38);
+  --color-accent: #ff8c00;
+  --color-accent-soft: rgb(255 140 0 / 0.12);
+  --color-ok: #4fbf8b;
+  --color-danger: #ef6a5b;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-bricolage), var(--font-inter), ui-sans-serif, sans-serif;
+  --font-serif: var(--font-instrument), ui-serif, Georgia, serif;
+
+  --radius-card: 12px;
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+  font-feature-settings: "cv11", "ss01";
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-ink);
+}
+
+/* Faint film grain so large dark areas read as printed rather than glowing. */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.font-display {
+  letter-spacing: -0.02em;
+}
